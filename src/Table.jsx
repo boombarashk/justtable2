@@ -3,7 +3,7 @@ import Row, {emptyRow} from "./Row";
 function Table(props) {
     const {data} = props
     const rows = data?.length
-        ? <Row data={data}/>
+        ? <Row {...props}/>
         : emptyRow()
 
     return (

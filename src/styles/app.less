@@ -12,6 +12,7 @@ body, select, select option, input {font-family: Tahoma}
   min-width: 640px;
   max-width: 1340px;
   margin-left:auto; margin-right: auto;
+  padding-bottom: 2rem;
   background: @base-bgcolor
 }
 
@@ -22,6 +23,8 @@ select {border:1px solid @active-gray}
 select, select option {font-size: 1rem}
 select option:checked {background-color:@active-green}
 ::selection {background-color: @dark-blue; color: #fff}
+
+label[for] {cursor: pointer}
 
 h1 {
   font-size:2rem;
