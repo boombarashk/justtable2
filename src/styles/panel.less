@@ -1,0 +1,9 @@
+@import "colors";
+
+.panel {display: flex; margin: 0 5% 2rem;flex-wrap: wrap; justify-content: flex-end;}
+.panel-sort {flex-grow:1;text-align:right;}
+
+.checkbox {position:relative;display:inline-block;width:32px;height:6px;border-radius:2px;background-color:@active-gray;}
+.checkbox:before {position:absolute;content:"";height: 16px;width: 16px;border-radius: 50%;background: @dark-blue;top: -5px;left:0;transition: 0.5s all ease-in-out;}
+.checkbox--active {}
+.checkbox--active:before {background: @active-green;left:16px;}

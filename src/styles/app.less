@@ -1,0 +1,33 @@
+@import "colors";
+@import "grid";
+@import "panel";
+
+* {outline: none}
+body {color: @base-color}
+body, select, select option, input {font-family: Tahoma}
+.nodisplay {display: none}
+
+.app {
+  min-height: 100vh;
+  min-width: 640px;
+  max-width: 1340px;
+  margin-left:auto; margin-right: auto;
+  background: @base-bgcolor
+}
+
+a {text-decoration: none; color: @link-color}
+a:hover {text-decoration:underline}
+
+select {border:1px solid @active-gray}
+select, select option {font-size: 1rem}
+select option:checked {background-color:@active-green}
+::selection {background-color: @dark-blue; color: #fff}
+
+h1 {
+  font-size:2rem;
+  line-height:1.4rem;
+  padding: .5em 5% 0;
+  margin-bottom:.5em; color:@dark-green;
+  border-bottom: 2px solid @dark-green;
+  text-align:right;
+}
