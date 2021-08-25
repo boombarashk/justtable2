@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/justtable2/static/css/main.4004e918.chunk.css",
+    "main.js": "/justtable2/static/js/main.f0bacf14.chunk.js",
+    "main.js.map": "/justtable2/static/js/main.f0bacf14.chunk.js.map",
+    "runtime-main.js": "/justtable2/static/js/runtime-main.3254d725.js",
+    "runtime-main.js.map": "/justtable2/static/js/runtime-main.3254d725.js.map",
+    "static/js/2.b8e072cd.chunk.js": "/justtable2/static/js/2.b8e072cd.chunk.js",
+    "static/js/2.b8e072cd.chunk.js.map": "/justtable2/static/js/2.b8e072cd.chunk.js.map",
+    "static/js/3.cf953057.chunk.js": "/justtable2/static/js/3.cf953057.chunk.js",
+    "static/js/3.cf953057.chunk.js.map": "/justtable2/static/js/3.cf953057.chunk.js.map",
+    "index.html": "/justtable2/index.html",
+    "static/css/main.4004e918.chunk.css.map": "/justtable2/static/css/main.4004e918.chunk.css.map",
+    "static/js/2.b8e072cd.chunk.js.LICENSE.txt": "/justtable2/static/js/2.b8e072cd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3254d725.js",
+    "static/js/2.b8e072cd.chunk.js",
+    "static/css/main.4004e918.chunk.css",
+    "static/js/main.f0bacf14.chunk.js"
+  ]
+}
