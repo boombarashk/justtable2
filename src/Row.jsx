@@ -26,20 +26,15 @@ function dataRow({item, filterActive, isHead = false, childrenCount = 0, openedM
 }
 
 export default function Row({ data, openedMap, setOpenedMap, filterActive }){
-    const items = data.map( item => {
+    const getItems = (data, isHead = false) => data.map( item => {
         const children = openedMap && openedMap.get(item.id)
-            ? item.children.map(itemChild => dataRow({
-                item: itemChild,
-                filterActive,
-                isHead: false,
-                openedMap, setOpenedMap
-            }))
+            ? getItems(item.children, false)
             : null;
 
         return <>
-            { dataRow({item, filterActive, isHead:true, openedMap, setOpenedMap}) }
+            { dataRow({item, filterActive, isHead, openedMap, setOpenedMap}) }
             { children }
         </>
     });
-    return (<>{items}</>)
+    return (<>{ getItems(data, true) }</>)
 }
