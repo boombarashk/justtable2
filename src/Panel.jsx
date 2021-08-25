@@ -1,4 +1,6 @@
-export default function Panel({ filterActive, setFilterActive }) {
+export default function Panel({
+    filterActive, setFilterActive,
+    sortFieldName, setSortFieldName }) {
 
     return <div className="panel">
         <div className="panel-filter">
@@ -12,10 +14,10 @@ export default function Panel({ filterActive, setFilterActive }) {
 
         <div className="panel-sort">
             <label htmlFor="sortBy">sort by</label>
-            <select id="sortBy">
-                <option value="default" className="selected">Default</option>
-                <option value="email">Email</option>
-                <option value="balance">Balance</option>
+            <select id="sortBy" onChange={(ev) => setSortFieldName(ev.target.value)}>
+                <option value="id" className={sortFieldName === "id" ? "selected" : ""}>Default</option>
+                <option value="email" className={sortFieldName === "email" ? "selected" : ""}>Email</option>
+                <option value="balance" className={sortFieldName === "balance" ? "selected" : ""}>Balance</option>
             </select>
 
             <span className="checkbox checkbox--active"></span>

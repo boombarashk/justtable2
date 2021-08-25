@@ -29,18 +29,16 @@ function dataRow({item, filterActive, isHead = false, childrenCount = 0, setPare
 
 export default function Row({ data, parentMap, setParentMap, filterActive }){
     const items = data.map( item => {
-        const children = parentMap && parentMap.has(item.id)
+        /*const children = parentMap && parentMap.has(item.id)
             ? parentMap.get(item.id).children.map(itemChild => dataRow({
                 item: itemChild,
                 filterActive,
                 isHead: false,
             }))
-            : [];
+            : [];*/
 
-        return (<>
-            { dataRow({item, filterActive, isHead:true, childrenCount: children.length, parentMap, setParentMap}) }
-            { children }
-        </>)
+        return dataRow({item, filterActive, isHead:true, })
+            {/*{ children }*/}
 
     });
     return (<>{items}</>)
