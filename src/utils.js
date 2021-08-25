@@ -1,3 +1,44 @@
+export function parseDataJSON(data, setOpenedMap) {
+    if (typeof data === 'undefined' || data.length === 0) {
+        return []
+    }
+    /**
+     * parentMap в зависимости от вложенности хранит 0.[индекс в массиве 1го уровня] либо id родителя
+     **/
+    const parentMap = new Map()
+    const openedMap = new Map()
+    const reformattedData = [];
+    let counter = 0;
+
+    data.forEach(item => {
+        const funcTransform = (item) => {
+            return {
+                children: [],
+                opened: false,
+                balanceNum: +item.balance.replace(/[\$\,]/g,''),
+                ...item
+            }
+        }
+
+        if (item.parentId === 0) {
+            reformattedData.push(funcTransform(item));
+            parentMap.set(item.id, +`0.${counter}`);
+            counter++
+        } else {
+            parentMap.set(item.id, item.parentId)
+
+            const node = getParentNode({dataArray: reformattedData, parentMap, parentId: item.parentId})
+            if (node) {
+                // NB no save item.parent = node <-- sort broke
+                node.children.push(funcTransform(item));
+            }
+        }
+        openedMap.set(item.id, false)
+    });
+    setOpenedMap(openedMap);
+    return reformattedData
+}
+
 function getRootNodeIndexById(parentMap, id) {
     let index = id
     do {
@@ -6,12 +47,12 @@ function getRootNodeIndexById(parentMap, id) {
     return index > 0 ? +(index + '').substr(2) : 0
 }
 
-export function getParentNode({dataArray, parentMap, parentId}) {
+function getParentNode({dataArray, parentMap, parentId}) {
     let index = getRootNodeIndexById(parentMap, parentId)
 
     const checkChildren = (node) => {
         let result = node
-        if (node.id == parentId) return result;
+        if (node.id === parentId) return result;
 
         node.children.forEach(childNode => {
             result =  childNode.id === parentId

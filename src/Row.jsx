@@ -2,22 +2,20 @@ export function emptyRow() {
     return <div className="grid-row-empty">No data</div>
 }
 
-function dataRow({item, filterActive, isHead = false, childrenCount = 0, setParentMap, parentMap}) {
+function dataRow({item, filterActive, isHead = false, childrenCount = 0, openedMap, setOpenedMap}) {
     const groupClassName = isHead ? 'grid-group' : '';
-    const groupHeadClassName = childrenCount > 0 ? 'grid-group-head' : ''// grid-group-head <- cursor: pointer
+    const groupHeadClassName = item.children.length > 0 ? 'grid-group-head' : ''// <- add cursor: pointer
     const nodisplayClassName = !item.isActive && filterActive  ? 'nodisplay' : ''
     return <div className={`grid-row ${groupClassName} ${groupHeadClassName} ${nodisplayClassName}`}
                 key={item.id}
                 data-id={item.id}
                 data-active={item.isActive}
-                onClick={(e) => {
-                    /*
-                    if (isHead && e.target.tagName.toLowerCase() === 'div') {
-                        const key = item.id
-                        const {childrenVisible, children} = parentMap.get(key)
-                        parentMap.set(key, {childrenVisible: !childrenVisible, children})
+                onClick={() => {
+                    if (item.children.length > 0) {
+                        const cloneOpenedMap = new Map(openedMap)
+                        cloneOpenedMap.set(item.id, !cloneOpenedMap.get(item.id))
+                        setOpenedMap(cloneOpenedMap)
                     }
-                    */
                 }}
     >
         <div className="grid-cell">{item.name}</div>
@@ -27,19 +25,21 @@ function dataRow({item, filterActive, isHead = false, childrenCount = 0, setPare
     </div>
 }
 
-export default function Row({ data, parentMap, setParentMap, filterActive }){
+export default function Row({ data, openedMap, setOpenedMap, filterActive }){
     const items = data.map( item => {
-        /*const children = parentMap && parentMap.has(item.id)
-            ? parentMap.get(item.id).children.map(itemChild => dataRow({
+        const children = openedMap && openedMap.get(item.id)
+            ? item.children.map(itemChild => dataRow({
                 item: itemChild,
                 filterActive,
                 isHead: false,
+                openedMap, setOpenedMap
             }))
-            : [];*/
+            : null;
 
-        return dataRow({item, filterActive, isHead:true, })
-            {/*{ children }*/}
-
+        return <>
+            { dataRow({item, filterActive, isHead:true, openedMap, setOpenedMap}) }
+            { children }
+        </>
     });
     return (<>{items}</>)
 }

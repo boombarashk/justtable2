@@ -1,6 +1,7 @@
 export default function Panel({
     filterActive, setFilterActive,
-    sortFieldName, setSortFieldName }) {
+    sortFieldName, setSortFieldName,
+    sortDescending, setSortDescending}) {
 
     return <div className="panel">
         <div className="panel-filter">
@@ -9,7 +10,7 @@ export default function Panel({
             }></span>
             <label htmlFor="filterActive"
                    onClick={() => {setFilterActive(!filterActive)}}
-            >choose active</label>
+            > choose active</label>
         </div>
 
         <div className="panel-sort">
@@ -20,8 +21,11 @@ export default function Panel({
                 <option value="balance" className={sortFieldName === "balance" ? "selected" : ""}>Balance</option>
             </select>
 
-            <span className="checkbox checkbox--active"></span>
-            <label htmlFor="sortOrder">ascending</label>
+            <span className={
+                `checkbox ${sortDescending ? 'checkbox--active' : ''}`
+            }></span>
+            <label htmlFor="sortOrder"
+                   onClick={() => {setSortDescending(!sortDescending)}}> descending</label>
         </div>
     </div>
 }

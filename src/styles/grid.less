@@ -3,14 +3,17 @@
 .grid {margin: 0 5%; padding-bottom: 2rem;}
 .grid-wrapper {display: grid; grid-template-columns: 30% 1fr 100px;}
 .grid-row {display: grid; grid-template-columns: 30% 1fr 100px;}
-.grid-group {margin-top:.3rem; border-width: 1px; border-style: solid; }
-.grid-group-head {cursor:pointer;}
+.grid-group {margin-top:.3rem; border-width: 1px; border-style: solid; box-sizing: border-box}
 .grid-row[data-active="false"]{}
 .grid-row[data-active="false"].grid-group {border-color:@light-gray;}
 .grid-row[data-active="false"] .grid-cell {color:@dark-blue; background:@light-gray-opacity}
 .grid-row[data-active="true"]{}
 .grid-row[data-active="true"].grid-group {border-color:@dark-green;}
 .grid-row[data-active="true"] .grid-cell {background:@light-green}
+.grid-group-head {
+  cursor:pointer;
+  &:hover .grid-cell {background: @hover-bgcolor}
+}
 .grid-cell {line-height: 1.5em}
 .grid-cell-title {font-weight: bold}
 .grid-row-empty {line-height: 2.4em;}
