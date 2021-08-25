@@ -1,6 +1,6 @@
 {
   "name": "justtable2",
-  "homepage": "justtable2",
+  "homepage": "https://boombarashk.github.io/justtable2",
   "version": "1.0.0",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
