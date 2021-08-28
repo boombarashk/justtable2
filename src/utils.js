@@ -9,7 +9,7 @@ export function parseDataJSON(data, setOpenedMap) {
     const openedMap = new Map()
     const reformattedData = [];
     let counter = 0;
-
+    sortByField(data, 'parentId')
     data.forEach(item => {
         const funcTransform = (item) => {
             return {
@@ -51,6 +51,7 @@ function getParentNode({dataArray, parentMap, parentId}) {
     let index = getRootNodeIndexById(parentMap, parentId)
 
     const checkChildren = (node) => {
+        if(typeof node === 'undefined') return null;
         let result = node
         if (node.id === parentId) return result;
 
